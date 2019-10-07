@@ -1,9 +1,12 @@
 import React from 'react';
-import {Wrapper, Title} from './styled';
+import {Wrapper} from './styled';
+import logo from '../../media/logo.svg';
 
 const App = () => (
     <Wrapper>
-        <Title>React Boilerplate</Title>
+        <svg>
+            <use xlinkHref={`#${logo.id}`} />
+        </svg>
     </Wrapper>
 );
 
