@@ -1,12 +1,12 @@
 import React from 'react';
-import {Wrapper} from './styled';
-import logo from '../../media/logo.svg';
+import Logo from '../logo';
+import Filter from '../filter';
+import Wrapper from './styled';
 
 const App = () => (
     <Wrapper>
-        <svg>
-            <use xlinkHref={`#${logo.id}`} />
-        </svg>
+        <Logo />
+        <Filter />
     </Wrapper>
 );
 
