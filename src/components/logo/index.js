@@ -1,6 +1,6 @@
 import React from 'react';
+import logo from 'Assets/images/logo.svg';
 import LogoContainer from './styled';
-import logo from '../../media/logo.svg';
 
 export default () => (
     <LogoContainer>
