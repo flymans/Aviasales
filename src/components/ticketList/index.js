@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import uniqueId from 'lodash.uniqueid';
 import {getSearchId, getTicketList} from 'Api';
 import TicketCard from 'Components/ticketCard';
 
@@ -16,20 +17,19 @@ const ticketList = () => {
     }, []);
 
     return (
-        <ul>
+        <div className="ticketList">
             {ticketCatalog.slice(0, 5).map(ticket => {
                 const {price, carrier, segments} = ticket;
                 return (
-                    <li>
-                        <TicketCard
-                            price={price}
-                            carrier={carrier}
-                            segments={segments}
-                        />
-                    </li>
+                    <TicketCard
+                        key={uniqueId()}
+                        price={price}
+                        carrier={carrier}
+                        segments={segments}
+                    />
                 );
             })}
-        </ul>
+        </div>
     );
 };
 
