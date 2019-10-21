@@ -10,6 +10,10 @@ export const FilterSection = styled.div`
 
 export const CheckboxContainer = styled.div`
     display: flex;
+    &:hover {
+        background: #f1fcff;
+        cursor: url(../src/assets/images/cursor.svg), pointer;
+    }
 `;
 
 export const HiddenCheckbox = styled.input.attrs({type: 'checkbox'})`
@@ -31,4 +35,8 @@ export const StyledCheckbox = styled.div`
     border: 1px solid #2196f3;
     box-sizing: border-box;
     border-radius: 2px;
+    background: ${props =>
+        props.checked
+            ? 'url(../src/assets/images/checkboxMark.svg) center no-repeat'
+            : ''};
 `;

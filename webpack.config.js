@@ -1,10 +1,10 @@
-const path = require('path');
+const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: resolve(__dirname, 'public'),
         filename: 'index-bundle.js'
     },
     module: {
@@ -27,9 +27,9 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            Api: path.resolve(__dirname, 'src/api/'),
-            Assets: path.resolve(__dirname, 'src/assets/'),
-            Components: path.resolve(__dirname, 'src/components/')
+            Api: resolve(__dirname, 'src/api/'),
+            Assets: resolve(__dirname, 'src/assets/'),
+            Components: resolve(__dirname, 'src/components/')
         }
     }
 };

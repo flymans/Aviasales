@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
-export default styled.div`
+const Wrapper = styled.div`
     background: #e5e5e5;
 `;
+
+export default Wrapper;

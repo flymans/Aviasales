@@ -6,7 +6,7 @@ import {
     StyledCheckbox
 } from './styled';
 
-export default () => {
+const Filter = () => {
     return (
         <FilterSection>
             Количество пересадок
@@ -45,3 +45,5 @@ export default () => {
         </FilterSection>
     );
 };
+
+export default Filter;

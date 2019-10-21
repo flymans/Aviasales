@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export default styled.svg`
+const LogoContainer = styled.svg`
     width: 89px;
     height: 89px;
 `;
+
+export default LogoContainer;
