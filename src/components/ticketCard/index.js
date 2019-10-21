@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 
-const TicketCard = ({price, carrier, segments}) => {
+const TicketCard = ({ticket: {price, carrier, segments}}) => {
     return (
         <div className="ticket">
             {price}, {carrier}
@@ -18,9 +18,11 @@ const TicketCard = ({price, carrier, segments}) => {
 };
 
 TicketCard.propTypes = {
-    price: PropTypes.number.isRequired,
-    carrier: PropTypes.string.isRequired,
-    segments: PropTypes.arrayOf(PropTypes.object).isRequired
+    ticket: PropTypes.shape({
+        price: PropTypes.number.isRequired,
+        carrier: PropTypes.string.isRequired,
+        segments: PropTypes.arrayOf(PropTypes.object).isRequired
+    }).isRequired
 };
 
 export default TicketCard;
