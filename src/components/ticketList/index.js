@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import uniqueId from 'lodash.uniqueid';
-import {getSearchId, getTicketList} from 'Api';
-import TicketCard from 'Components/ticketCard';
-import Spinner from 'Components/spinner';
+import {getSearchId, getTicketList} from 'api';
+import TicketCard from 'components/ticketCard';
+import Spinner from 'components/spinner';
 
 const ticketList = () => {
     const [ticketCatalog, setTicketList] = useState([]);

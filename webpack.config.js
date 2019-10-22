@@ -28,9 +28,9 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            Api: resolve(__dirname, 'src/api/'),
-            Assets: resolve(__dirname, 'src/assets/'),
-            Components: resolve(__dirname, 'src/components/')
+            api: resolve(__dirname, 'src/api/'),
+            assets: resolve(__dirname, 'src/assets/'),
+            components: resolve(__dirname, 'src/components/')
         }
     }
 };
