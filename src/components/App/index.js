@@ -3,14 +3,18 @@ import Logo from 'Components/logo';
 import Filter from 'Components/filter';
 import Sorting from 'Components/sorting';
 import TicketList from 'Components/ticketList';
-import Wrapper from './styled';
+import {Wrapper, TicketView} from './styled';
+import GlobalStyle from './globalStyle';
 
 const App = () => (
     <Wrapper>
+        <GlobalStyle />
         <Logo />
         <Filter />
-        <Sorting />
-        <TicketList />
+        <TicketView>
+            <Sorting />
+            <TicketList />
+        </TicketView>
     </Wrapper>
 );
 
