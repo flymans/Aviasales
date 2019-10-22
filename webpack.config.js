@@ -27,6 +27,7 @@ module.exports = {
         })
     ],
     resolve: {
+        extensions: ['.js', '.jsx'],
         alias: {
             api: resolve(__dirname, 'src/api/'),
             assets: resolve(__dirname, 'src/assets/'),
