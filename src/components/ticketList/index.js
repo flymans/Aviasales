@@ -6,18 +6,42 @@ import Spinner from 'components/spinner';
 
 const ticketList = () => {
     const [ticketCatalog, setTicketList] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [searchId, setSearchId] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
-    useEffect(async () => {
-        const {
-            data: {searchId}
-        } = await getSearchId();
-        const {
-            data: {tickets}
-        } = await getTicketList(searchId);
-        setTicketList(tickets);
-        setLoading(false);
+    useEffect(() => {
+        const searchIdGetter = async () => {
+            const {
+                data: {searchId: test}
+            } = await getSearchId();
+            setSearchId(test);
+        };
+        searchIdGetter();
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsError(false);
+            setIsLoading(true);
+            try {
+                const {
+                    data: {tickets, stop}
+                } = await getTicketList(searchId);
+                if (stop) {
+                    setTicketList(tickets);
+                    setIsLoading(false);
+                } else {
+                    fetchData();
+                }
+            } catch (error) {
+                if (error.response.status === 500) {
+                    fetchData();
+                } else setIsError(true);
+            }
+        };
+        fetchData();
+    }, [searchId]);
 
     const renderTicketCatalog = () =>
         ticketCatalog
@@ -26,7 +50,8 @@ const ticketList = () => {
 
     return (
         <div className="ticketList">
-            {loading ? <Spinner /> : renderTicketCatalog()}
+            {isError && <span>Что-то пошло не так...</span>}
+            {isLoading ? <Spinner /> : renderTicketCatalog()}
         </div>
     );
 };
