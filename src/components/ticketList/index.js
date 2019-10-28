@@ -10,6 +10,9 @@ const ticketList = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
 
+    const sortCheapest = true; // TODO : replace sortCheapest to REDUX store
+    const filterStopsOptions = [0]; // TODO : replace filterOptions to REDUX store
+
     useEffect(() => {
         const searchIdGetter = async () => {
             const {
@@ -44,28 +47,43 @@ const ticketList = () => {
     }, [searchId]);
 
     const renderTicketCatalog = () => {
-        const sortFunc = (ticketA, ticketB) => {
-            const sortCheapest = true; //TODO : replace sortCheapest to REDUX store
+        const sortFn = (ticketA, ticketB) => {
             if (sortCheapest) {
                 return ticketA.price - ticketB.price;
-            } else {
-                const {segments: segmentsA} = ticketA;
-                const {segments: segmentsB} = ticketB;
-                const durA = segmentsA.reduce(
-                    (acc, {duration}) => acc + duration,
-                    0
-                );
-                const durB = segmentsB.reduce(
-                    (acc, {duration}) => acc + duration,
-                    0
-                );
-                return durA - durB;
             }
+
+            const {segments: segmentsA} = ticketA;
+            const {segments: segmentsB} = ticketB;
+            const durA = segmentsA.reduce(
+                (acc, {duration}) => acc + duration,
+                0
+            );
+            const durB = segmentsB.reduce(
+                (acc, {duration}) => acc + duration,
+                0
+            );
+            return durA - durB;
         };
-        return ticketCatalog
-            .sort(sortFunc)
-            .slice(0, 5)
-            .map(ticket => <TicketCard key={uniqueId()} ticket={ticket} />);
+
+        const filterFn = ({segments}) => {
+            const maxStopsLength = Math.max(
+                ...segments.map(({stops}) => stops.length)
+            );
+            return filterStopsOptions.includes(maxStopsLength);
+        };
+
+        const renderedCatalog = ticketCatalog
+            .sort(sortFn)
+            .filter(filterFn)
+            .slice(0, 5);
+
+        return renderedCatalog.length > 0 ? (
+            renderedCatalog.map(ticket => (
+                <TicketCard key={uniqueId()} ticket={ticket} />
+            ))
+        ) : (
+            <span>Билеты не найдены</span>
+        );
     };
 
     return (
