@@ -43,10 +43,30 @@ const ticketList = () => {
         fetchData();
     }, [searchId]);
 
-    const renderTicketCatalog = () =>
-        ticketCatalog
+    const renderTicketCatalog = () => {
+        const sortFunc = (ticketA, ticketB) => {
+            const sortCheapest = true; //TODO : replace sortCheapest to REDUX store
+            if (sortCheapest) {
+                return ticketA.price - ticketB.price;
+            } else {
+                const {segments: segmentsA} = ticketA;
+                const {segments: segmentsB} = ticketB;
+                const durA = segmentsA.reduce(
+                    (acc, {duration}) => acc + duration,
+                    0
+                );
+                const durB = segmentsB.reduce(
+                    (acc, {duration}) => acc + duration,
+                    0
+                );
+                return durA - durB;
+            }
+        };
+        return ticketCatalog
+            .sort(sortFunc)
             .slice(0, 5)
             .map(ticket => <TicketCard key={uniqueId()} ticket={ticket} />);
+    };
 
     return (
         <div className="ticketList">
