@@ -35,10 +35,6 @@ const Segment = ({segment: {origin, destination, date, duration, stops}}) => {
     };
 
     const renderDate = d => {
-        const departureDateInstance = new Date(d);
-        const arrivalDateInstance = new Date(
-            departureDateInstance.getTime() + duration * 60000
-        );
         const dateRender = dateInstance => {
             const hours = dateInstance.getHours();
             const minutes = dateInstance.getMinutes();
@@ -46,6 +42,10 @@ const Segment = ({segment: {origin, destination, date, duration, stops}}) => {
                 minutes > 9 ? minutes : `0${minutes}`
             }`;
         };
+        const departureDateInstance = new Date(d);
+        const arrivalDateInstance = new Date(
+            departureDateInstance.getTime() + duration * 60000
+        );
         const departureTime = dateRender(departureDateInstance);
         const arrivalTime = dateRender(arrivalDateInstance);
         return `${departureTime} - ${arrivalTime}`;
