@@ -1,5 +1,6 @@
 const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -24,7 +25,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             favicon: './src/assets/images/favicon.ico'
-        })
+        }),
+        new CopyPlugin([
+            { from: './src/assets', to: 'src/assets' },
+          ])
     ],
     resolve: {
         extensions: ['.js', '.jsx'],
