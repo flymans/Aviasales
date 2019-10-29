@@ -8,6 +8,8 @@ export const SegmentSection = styled.div`
 export const SegmentBlock = styled.div`
     display: flex;
     flex-flow: column;
+    width: 141px;
+    height: 39px;
 `;
 
 export const SegmentHeader = styled.span`

@@ -1,14 +1,7 @@
-import { createStore } from 'redux'
+import {createStore} from 'redux';
 
-function todos(state = [], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return state.concat([action.text])
-    default:
-      return state
-  }
-}
+import reducer from './reducers';
 
-const store = createStore(todos, ['Use Redux']);
+const store = createStore(reducer);
 
 export default store;

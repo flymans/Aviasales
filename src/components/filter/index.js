@@ -13,27 +13,27 @@ const Filter = () => {
             <label>
                 <CheckboxContainer>
                     <HiddenCheckbox name="stops-count__all" />
-                    <StyledCheckbox checked />
+                    <StyledCheckbox />
                     Все
                 </CheckboxContainer>
             </label>
             <label>
                 <CheckboxContainer>
                     <HiddenCheckbox name="stops-count__nonstop" />
-                    <StyledCheckbox />
+                    <StyledCheckbox checked />
                     Без пересадок
                 </CheckboxContainer>
             </label>
             <label>
                 <CheckboxContainer>
                     <HiddenCheckbox name="stops-count__one" />
-                    <StyledCheckbox />1 пересадка
+                    <StyledCheckbox checked />1 пересадка
                 </CheckboxContainer>
             </label>
             <label>
                 <CheckboxContainer>
                     <HiddenCheckbox name="stops-count__two" />
-                    <StyledCheckbox />2 пересадки
+                    <StyledCheckbox checked />2 пересадки
                 </CheckboxContainer>
             </label>
             <label>
