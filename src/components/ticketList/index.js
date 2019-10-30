@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import uniqueId from 'lodash.uniqueid';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {getSearchId, getTicketList} from 'api';
 import TicketCard from 'components/ticketCard';
 import Spinner from 'components/spinner';
 
-const ticketList = ({sortCheapest, filterStopsOptions}) => {
+const ticketList = () => {
     const [ticketCatalog, setTicketList] = useState([]);
     const [searchId, setSearchId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+
+    const sortCheapest = useSelector(state => state.sortCheapest);
+    const filterStopsOptions = useSelector(state => state.filterStopsOptions);
 
     useEffect(() => {
         const searchIdGetter = async () => {
@@ -92,8 +95,4 @@ const ticketList = ({sortCheapest, filterStopsOptions}) => {
     );
 };
 
-const mapStateToProps = ({sortCheapest, filterStopsOptions}) => {
-    return {sortCheapest, filterStopsOptions};
-};
-
-export default connect(mapStateToProps)(ticketList);
+export default ticketList;

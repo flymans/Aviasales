@@ -1,6 +1,10 @@
 export const sortChangeCheapest = () => {
-    type: 'SORT_CHANGE_CHEAPEST';
+    return {
+        type: 'SORT_CHANGE_CHEAPEST'
+    };
 };
 export const sortChangeFastest = () => {
-    type: 'SORT_CHANGE_FASTEST';
+    return {
+        type: 'SORT_CHANGE_FASTEST'
+    };
 };

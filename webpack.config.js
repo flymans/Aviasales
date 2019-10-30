@@ -26,16 +26,16 @@ module.exports = {
             template: './src/index.html',
             favicon: './src/assets/images/favicon.ico'
         }),
-        new CopyPlugin([
-            { from: './src/assets', to: 'src/assets' },
-          ])
+        new CopyPlugin([{from: './src/assets', to: 'src/assets'}])
     ],
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
             api: resolve(__dirname, 'src/api/'),
             assets: resolve(__dirname, 'src/assets/'),
-            components: resolve(__dirname, 'src/components/')
+            components: resolve(__dirname, 'src/components/'),
+            actions: resolve(__dirname, 'src/actions/'),
+            reducers: resolve(__dirname, 'src/reducers/')
         }
     }
 };

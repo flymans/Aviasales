@@ -7,10 +7,12 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SORT_CHANGE_CHEAPEST':
             return {
+                ...state,
                 sortCheapest: true
             };
         case 'SORT_CHANGE_FASTEST':
             return {
+                ...state,
                 sortCheapest: false
             };
         default:
