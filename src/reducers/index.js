@@ -1,6 +1,12 @@
 const initialState = {
     sortCheapest: true,
-    filterStopsOptions: [0, 1, 2]
+    filterStopsOptions: {
+        all: false,
+        nonStop: true,
+        oneStop: true,
+        twoStops: true,
+        threeStops: false
+    }
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,6 +21,31 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 sortCheapest: false
             };
+        case 'FILTER_CHANGE_STATE_ALL': {
+            const {filterStopsOptions: filter} = state;
+            const stopValue = !filter.all;
+            const newFilterStopsOptions = Object.keys(filter).reduce(
+                (acc, key) => {
+                    acc[key] = stopValue;
+                    return acc;
+                },
+                {}
+            );
+            return {
+                ...state,
+                filterStopsOptions: newFilterStopsOptions
+            };
+        }
+        case 'FILTER_CHANGE_STATE': {
+            const stopValue = action.payload;
+            return {
+                ...state,
+                filterStopsOptions: {
+                    ...state.filterStopsOptions,
+                    [stopValue]: !state.filterStopsOptions[stopValue]
+                }
+            };
+        }
         default:
             return state;
     }

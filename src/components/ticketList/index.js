@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import uniqueId from 'lodash.uniqueid';
 import {useSelector} from 'react-redux';
 import {getSearchId, getTicketList} from 'api';
+import {sortFn, filterFn} from 'components/ticketList/utils';
 import TicketCard from 'components/ticketCard';
 import Spinner from 'components/spinner';
 
@@ -17,9 +18,9 @@ const ticketList = () => {
     useEffect(() => {
         const searchIdGetter = async () => {
             const {
-                data: {searchId: test}
+                data: {searchId: id}
             } = await getSearchId();
-            setSearchId(test);
+            setSearchId(id);
         };
         searchIdGetter();
     }, []);
@@ -48,34 +49,9 @@ const ticketList = () => {
     }, [searchId]);
 
     const renderTicketCatalog = () => {
-        const sortFn = (ticketA, ticketB) => {
-            if (sortCheapest) {
-                return ticketA.price - ticketB.price;
-            }
-
-            const {segments: segmentsA} = ticketA;
-            const {segments: segmentsB} = ticketB;
-            const durA = segmentsA.reduce(
-                (acc, {duration}) => acc + duration,
-                0
-            );
-            const durB = segmentsB.reduce(
-                (acc, {duration}) => acc + duration,
-                0
-            );
-            return durA - durB;
-        };
-
-        const filterFn = ({segments}) => {
-            const maxStopsLength = Math.max(
-                ...segments.map(({stops}) => stops.length)
-            );
-            return filterStopsOptions.includes(maxStopsLength);
-        };
-
         const renderedCatalog = ticketCatalog
-            .sort(sortFn)
-            .filter(filterFn)
+            .sort(sortFn(sortCheapest))
+            .filter(filterFn(filterStopsOptions))
             .slice(0, 5);
 
         return renderedCatalog.length > 0 ? (
