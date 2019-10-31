@@ -4,6 +4,6 @@ const instance = axios.create({
     baseURL: 'https://front-test.beta.aviasales.ru'
 });
 
-export const getSearchId = () => instance.get('/search');
+export const searchIdApi = () => instance.get('/search');
 
-export const getTicketList = id => instance.get(`/tickets?searchId=${id}`);
+export const ticketListApi = id => instance.get(`/tickets?searchId=${id}`);

@@ -1,61 +1,37 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import uniqueId from 'lodash.uniqueid';
-import {useSelector} from 'react-redux';
-import {getSearchId, getTicketList} from 'api';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchSearchIdIfNeeded, fetchTicketListIfNeeded} from 'actions';
 import {sortFn, filterFn} from 'components/ticketList/utils';
 import TicketCard from 'components/ticketCard';
 import Spinner from 'components/spinner';
 
 const ticketList = () => {
-    const [ticketCatalog, setTicketList] = useState([]);
-    const [searchId, setSearchId] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
-
     const sortCheapest = useSelector(state => state.sortCheapest);
     const filterStopsOptions = useSelector(state => state.filterStopsOptions);
+    const isFetching = useSelector(state => state.isFetching);
+    const isError = useSelector(state => state.isError);
+    const searchId = useSelector(state => state.searchId);
+    const ticketCatalog = useSelector(state => state.ticketList);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const searchIdGetter = async () => {
-            const {
-                data: {searchId: id}
-            } = await getSearchId();
-            setSearchId(id);
-        };
-        searchIdGetter();
+        dispatch(fetchSearchIdIfNeeded());
     }, []);
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsError(false);
-            setIsLoading(true);
-            try {
-                const {
-                    data: {tickets, stop}
-                } = await getTicketList(searchId);
-                if (stop) {
-                    setTicketList(tickets);
-                    setIsLoading(false);
-                } else {
-                    fetchData();
-                }
-            } catch (error) {
-                if (error.response.status === 500) {
-                    fetchData();
-                } else setIsError(true);
-            }
-        };
-        fetchData();
+        dispatch(fetchTicketListIfNeeded());
     }, [searchId]);
 
-    const renderTicketCatalog = () => {
-        const renderedCatalog = ticketCatalog
+    const renderTicketList = () => {
+        const renderedTicketList = ticketCatalog
             .sort(sortFn(sortCheapest))
             .filter(filterFn(filterStopsOptions))
             .slice(0, 5);
 
-        return renderedCatalog.length > 0 ? (
-            renderedCatalog.map(ticket => (
+        return renderedTicketList.length > 0 ? (
+            renderedTicketList.map(ticket => (
                 <TicketCard key={uniqueId()} ticket={ticket} />
             ))
         ) : (
@@ -66,7 +42,7 @@ const ticketList = () => {
     return (
         <div className="ticketList">
             {isError && <span>Что-то пошло не так...</span>}
-            {isLoading ? <Spinner /> : renderTicketCatalog()}
+            {isFetching ? <Spinner /> : renderTicketList()}
         </div>
     );
 };

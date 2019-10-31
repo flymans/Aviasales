@@ -6,7 +6,11 @@ const initialState = {
         oneStop: true,
         twoStops: true,
         threeStops: false
-    }
+    },
+    isFetching: false,
+    isError: false,
+    searchId: '',
+    ticketList: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,6 +48,39 @@ const reducer = (state = initialState, action) => {
                     ...state.filterStopsOptions,
                     [stopValue]: !state.filterStopsOptions[stopValue]
                 }
+            };
+        }
+        case 'FETCHING_SEARCHID': {
+            return {
+                ...state,
+                isFetching: true
+            };
+        }
+        case 'GET_SEARCHID_SUCCESS': {
+            return {
+                ...state,
+                searchId: action.searchId
+            };
+        }
+        case 'GET_SEARCHID_ERROR': {
+            return {
+                ...state,
+                isError: true,
+                isFetching: false
+            };
+        }
+        case 'GET_TICKETLIST_SUCCESS': {
+            return {
+                ...state,
+                ticketList: action.ticketList,
+                isFetching: false
+            };
+        }
+        case 'GET_TICKETLIST_ERROR': {
+            return {
+                ...state,
+                isError: true,
+                isFetching: false
             };
         }
         default:
