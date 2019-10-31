@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
-import Segment from 'components/segment';
+import Segment from 'components/TicketList/TicketCard/Segment';
 import {
     Header,
     CardContainer,

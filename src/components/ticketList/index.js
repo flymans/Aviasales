@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import uniqueId from 'lodash.uniqueid';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchSearchIdIfNeeded, fetchTicketListIfNeeded} from 'actions';
-import {sortFn, filterFn} from 'components/ticketList/utils';
-import TicketCard from 'components/ticketCard';
-import Spinner from 'components/spinner';
+import {sortFn, filterFn} from 'components/TicketList/utils';
+import TicketCard from 'components/TicketList/TicketCard';
+import Spinner from 'components/TicketList/Spinner';
 
 const ticketList = () => {
     const sortCheapest = useSelector(state => state.sortCheapest);

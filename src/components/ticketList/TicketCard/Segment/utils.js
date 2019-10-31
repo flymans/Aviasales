@@ -8,10 +8,7 @@ export const renderDate = (date, duration) => {
     return `${departureTime} - ${arrivalTime}`;
 };
 
-export const renderDuration = duration =>
-    `${Math.floor(duration / 60)}ч ${duration % 60}м`;
-
-// export const renderDuration = dur => {
-//     momentDuration = moment.duration(dur, 'm')
-//     return `${momentDuration.hours()}ч ${momentDuration.minutes()}м`
-// }
+export const renderDuration = dur => {
+    const momentDuration = moment.duration(dur, 'm');
+    return `${momentDuration.hours()}ч ${momentDuration.minutes()}м`;
+};

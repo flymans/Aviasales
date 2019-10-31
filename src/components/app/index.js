@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from 'components/logo';
-import Filter from 'components/filter';
-import Sorting from 'components/sorting';
-import TicketList from 'components/ticketList';
+import Logo from 'components/Logo';
+import Filter from 'components/Filter';
+import Sorting from 'components/Sorting';
+import TicketList from 'components/TicketList';
 import {Wrapper, TicketView} from './styled';
 import GlobalStyle from './globalStyle';
 
