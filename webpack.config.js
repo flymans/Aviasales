@@ -1,6 +1,7 @@
 const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -26,7 +27,10 @@ module.exports = {
             template: './src/index.html',
             favicon: './src/assets/images/favicon.ico'
         }),
-        new CopyPlugin([{from: './src/assets', to: 'src/assets'}])
+        new CopyPlugin([{from: './src/assets', to: 'src/assets'}]),
+        new MomentLocalesPlugin({
+            localesToKeep: ['ru']
+        })
     ],
     resolve: {
         extensions: ['.js', '.jsx'],
