@@ -6,6 +6,7 @@ const LogoContainer = styled.svg`
     height: 89px;
     justify-self: center;
     align-self: center;
+    margin: 50px auto;
 `;
 
 export default LogoContainer;

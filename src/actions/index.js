@@ -43,13 +43,6 @@ export const getSearchIdFailure = () => {
     };
 };
 
-const shouldFetchSearchId = state => {
-    if (state.isFetching) {
-        return false;
-    }
-    return true;
-};
-
 const fetchSearchId = () => {
     return async dispatch => {
         try {
@@ -65,12 +58,7 @@ const fetchSearchId = () => {
 };
 
 export const fetchSearchIdIfNeeded = () => {
-    return (dispatch, getState) => {
-        if (shouldFetchSearchId(getState())) {
-            return dispatch(fetchSearchId());
-        }
-        return Promise.resolve();
-    };
+    return dispatch => dispatch(fetchSearchId());
 };
 
 export const getTicketListSuccess = ticketList => {
@@ -84,13 +72,6 @@ export const getTicketListFailure = () => {
     return {
         type: 'GET_TICKETLIST_ERROR'
     };
-};
-
-const shouldFetchTicketList = state => {
-    if (state.searchId === '' && state.isFetching) {
-        return false;
-    }
-    return true;
 };
 
 const fetchTicketList = state => {
@@ -113,10 +94,5 @@ const fetchTicketList = state => {
 };
 
 export const fetchTicketListIfNeeded = () => {
-    return (dispatch, getState) => {
-        if (shouldFetchTicketList(getState())) {
-            return dispatch(fetchTicketList(getState()));
-        }
-        return Promise.resolve();
-    };
+    return (dispatch, getState) => dispatch(fetchTicketList(getState()));
 };

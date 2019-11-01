@@ -7,7 +7,7 @@ const initialState = {
         twoStops: true,
         threeStops: false
     },
-    isFetching: false,
+    isFetching: true,
     isError: false,
     searchId: '',
     ticketList: []

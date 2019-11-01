@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {filterChangeStateAll, filterChangeState} from 'actions';
 import {
     FilterSection,
+    FilterHeader,
     CheckboxContainer,
     HiddenCheckbox,
     StyledCheckbox
@@ -13,57 +14,57 @@ const Filter = () => {
     const dispatch = useDispatch();
     return (
         <FilterSection>
-            Количество пересадок
+            <FilterHeader>Количество пересадок</FilterHeader>
             <label>
                 <CheckboxContainer>
-                    <HiddenCheckbox name="stops-count__all" />
-                    <StyledCheckbox
-                        checked={filterStopsOptions.all}
+                    <HiddenCheckbox
                         onClick={() => dispatch(filterChangeStateAll())}
+                        name="stops-count__all"
                     />
+                    <StyledCheckbox checked={filterStopsOptions.all} />
                     Все
                 </CheckboxContainer>
             </label>
             <label>
                 <CheckboxContainer>
-                    <HiddenCheckbox name="stops-count__nonstop" />
-                    <StyledCheckbox
-                        checked={filterStopsOptions.nonStop}
+                    <HiddenCheckbox
                         onClick={() => dispatch(filterChangeState('nonStop'))}
+                        name="stops-count__nonstop"
                     />
+                    <StyledCheckbox checked={filterStopsOptions.nonStop} />
                     Без пересадок
                 </CheckboxContainer>
             </label>
             <label>
                 <CheckboxContainer>
-                    <HiddenCheckbox name="stops-count__one" />
-                    <StyledCheckbox
-                        checked={filterStopsOptions.oneStop}
+                    <HiddenCheckbox
                         onClick={() => dispatch(filterChangeState('oneStop'))}
+                        name="stops-count__one"
                     />
-                    1 пересадка
+                    <StyledCheckbox checked={filterStopsOptions.oneStop} />1
+                    пересадка
                 </CheckboxContainer>
             </label>
             <label>
                 <CheckboxContainer>
-                    <HiddenCheckbox name="stops-count__two" />
-                    <StyledCheckbox
-                        checked={filterStopsOptions.twoStops}
+                    <HiddenCheckbox
                         onClick={() => dispatch(filterChangeState('twoStops'))}
+                        name="stops-count__two"
                     />
-                    2 пересадки
+                    <StyledCheckbox checked={filterStopsOptions.twoStops} />2
+                    пересадки
                 </CheckboxContainer>
             </label>
             <label>
                 <CheckboxContainer>
-                    <HiddenCheckbox name="stops-count__three" />
-                    <StyledCheckbox
-                        checked={filterStopsOptions.threeStops}
+                    <HiddenCheckbox
                         onClick={() =>
                             dispatch(filterChangeState('threeStops'))
                         }
+                        name="stops-count__three"
                     />
-                    3 пересадки
+                    <StyledCheckbox checked={filterStopsOptions.threeStops} />3
+                    пересадки
                 </CheckboxContainer>
             </label>
         </FilterSection>

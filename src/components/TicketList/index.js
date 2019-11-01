@@ -5,6 +5,7 @@ import {fetchSearchIdIfNeeded, fetchTicketListIfNeeded} from 'actions';
 import {sortFn, filterFn} from 'components/TicketList/utils';
 import TicketCard from 'components/TicketList/TicketCard';
 import Spinner from 'components/TicketList/Spinner';
+import TicketListContainer from './styled';
 
 const ticketList = () => {
     const sortCheapest = useSelector(state => state.sortCheapest);
@@ -40,10 +41,10 @@ const ticketList = () => {
     };
 
     return (
-        <div className="ticketList">
+        <TicketListContainer>
             {isError && <span>Что-то пошло не так...</span>}
             {isFetching ? <Spinner /> : renderTicketList()}
-        </div>
+        </TicketListContainer>
     );
 };
 

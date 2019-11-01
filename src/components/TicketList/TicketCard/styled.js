@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const Header = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 0px 50px 20px 20px;
-    padding-top: 20px;
 `;
 
 export const CardContainer = styled.div`
     background: #ffffff;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    margin: 20px 0;
+    padding: 20px;
 `;
 
 export const StyledPrice = styled.span`

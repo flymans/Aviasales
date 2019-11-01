@@ -13,7 +13,9 @@ import {
 const TicketCard = ({ticket: {price, carrier, segments}}) => (
     <CardContainer>
         <Header>
-            <StyledPrice>{price} Р</StyledPrice>
+            <StyledPrice>
+                {price.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')} Р
+            </StyledPrice>
             <CarrierImg
                 src={`//pics.avs.io/99/36/${carrier}.png`}
                 alt={`${carrier} logo`}

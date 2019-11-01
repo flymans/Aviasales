@@ -13,6 +13,8 @@ body {
     font-weight: 600;
     font-size: 12px;
     line-height: 20px;
+    margin: 0;
+    background: #f3f7fa;
 }
 `;
 

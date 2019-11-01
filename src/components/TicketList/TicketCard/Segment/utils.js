@@ -10,5 +10,7 @@ export const renderDate = (date, duration) => {
 
 export const renderDuration = dur => {
     const momentDuration = moment.duration(dur, 'm');
-    return `${momentDuration.hours()}ч ${momentDuration.minutes()}м`;
+    return `${Math.floor(
+        momentDuration.asHours()
+    )}ч ${momentDuration.minutes()}м`;
 };
